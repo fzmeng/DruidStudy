@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+datasource:
+  business:
+    url: ****
+    username: ****
+    password: ****
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+#readonly
+  business_slave:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: *****
+    username: *****
+    password: *****
+    driver-class-name: com.mysql.jdbc.Driver
+
+spring:
+  application:
+    name: DRUID_STUDY
+#druid config
+  datasource:
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-on-return: false
+      filter:
+        stat:
+          log-slow-sql: true
+
+#druidConfig_login
+druidConfig:
+  druidName: admin
+  druidPwd: admin123
+
+#log_level config
+LOG_LEVEL: INFO
+LOG_LEVEL_HTTP: INFO
+LOG_LEVEL_MAPPER: INFO
+
+#jasypt config
+jasypt:
+  encryptor:
+    password: foo #根密码
+
