@@ -1,6 +1,7 @@
 package com.study.druid;
 
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,15 @@ public class DataSourceAOP {
     public void setReadDataSourceType() {
         DynamicDataSource.slave();
         log.info("dataSource切换到：slave");
+    }
+
+    @After("execution(* com.study.service..*.update*(..)))" +
+            "||  execution(* com.study.service..*.save*(..)))" +
+            "||  execution(* com.study.service..*.insert*(..)))" +
+            "||  execution(* com.study.service..*.delete*(..)))")
+    public void clean() {
+        DynamicDataSource.cleanAll();
+        log.info("======dataSource cleanAll======");
     }
 
 

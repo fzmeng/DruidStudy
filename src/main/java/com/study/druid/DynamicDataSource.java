@@ -36,4 +36,8 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     public static DatabaseType getType() {
         return contextHolder.get();
     }
+
+    public static void cleanAll(){
+        contextHolder.remove();
+    }
 }
