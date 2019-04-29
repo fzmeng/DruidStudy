@@ -38,13 +38,7 @@ public class DataSourceAOP {
         log.info("dataSource切换到：slave");
     }
 
-    @After("execution(* com.study.service..*.update*(..)))" +
-            "||  execution(* com.study.service..*.save*(..)))" +
-            "||  execution(* com.study.service..*.insert*(..)))" +
-            "||  execution(* com.study.service..*.delete*(..)))" +
-            "||  execution(* com.study.service..*.query*(..)))" +
-            "||  execution(* com.study.service..*.get*(..)))"
-    )
+   @After("execution(* com.study.service..*.*(..)))")
     public void clean() {
         DynamicDataSource.cleanAll();
         log.info("======dataSource cleanAll======");
